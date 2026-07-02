@@ -1,0 +1,30 @@
+table LowTurnoverVendor
+	lineageTag: 41cf86f3-76f2-409f-98b9-22fb1608e8f9
+
+	column VendorName
+		lineageTag: 68d2b05f-262f-47a7-a207-8ce60cb73168
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: vendor_sales_summary[VendorName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgStockTurnOver
+		lineageTag: 6b8d9670-6fc6-4c87-af4d-370d02c8535c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [AvgStockTurnOver]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition LowTurnoverVendor = calculated
+		mode: import
+		source = ```
+				VAR FilteredData = FILTER(vendor_sales_summary,vendor_sales_summary[StockTurnover]<1) 
+				RETURN SUMMARIZE(FilteredData,vendor_sales_summary[VendorName],"AvgStockTurnOver",AVERAGE(vendor_sales_summary[StockTurnover]))
+				```
+
+	annotation PBI_Id = 51305f248734485caef7e628947c5083
+

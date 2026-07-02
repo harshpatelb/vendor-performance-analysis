@@ -1,0 +1,43 @@
+table BrandPerformance
+	lineageTag: 3e780b54-288a-4f0d-81ff-4f2f2454736f
+
+	column Description
+		lineageTag: 9029dcbe-b810-4554-8336-5e84e2805551
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: vendor_sales_summary[Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalSales
+		lineageTag: 23ca1098-bd9d-42dd-bd53-d0797aa20e6b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [TotalSales]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AvgProfitMargin
+		lineageTag: 62f10937-21f6-4d50-a8ec-61d2ad9949a3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [AvgProfitMargin]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TargetBrand = IF([TotalSales] <= PERCENTILEX.INC(BrandPerformance,BrandPerformance[TotalSales],0.15) && [AvgProfitMargin] >= PERCENTILEX.INC(BrandPerformance,BrandPerformance[AvgProfitMargin],0.85),"Yes","No")
+		lineageTag: 4cc19795-f8f2-4ecc-842b-bb4d059bc636
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BrandPerformance = calculated
+		mode: import
+		source = SUMMARIZE(vendor_sales_summary,vendor_sales_summary[Description],"TotalSales",SUM(vendor_sales_summary[TotalSalesDollars]),"AvgProfitMargin",AVERAGE(vendor_sales_summary[ProfitMargin]))
+
+	annotation PBI_Id = d5a953db940b4cfd8f59701f6ec55422
+

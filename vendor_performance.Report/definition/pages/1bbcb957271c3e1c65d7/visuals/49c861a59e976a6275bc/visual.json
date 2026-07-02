@@ -1,0 +1,312 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "49c861a59e976a6275bc",
+  "position": {
+    "x": 14.679715302491104,
+    "y": 564.50177935943066,
+    "z": 13000,
+    "height": 320.28469750889684,
+    "width": 884.78647686832744,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "table",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vendor_sales_summary"
+                    }
+                  },
+                  "Property": "VendorName"
+                }
+              },
+              "queryRef": "vendor_sales_summary.VendorName",
+              "nativeQueryRef": "Vendor"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vendor_sales_summary"
+                        }
+                      },
+                      "Property": "TotalPurchaseDollars"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(vendor_sales_summary.TotalPurchaseDollars)",
+              "nativeQueryRef": "Total Purchases"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vendor_sales_summary"
+                        }
+                      },
+                      "Property": "TotalSalesDollars"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(vendor_sales_summary.TotalSalesDollars)",
+              "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vendor_sales_summary"
+                        }
+                      },
+                      "Property": "GrossProfit"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(vendor_sales_summary.GrossProfit)",
+              "nativeQueryRef": "Gross Profit"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vendor_sales_summary"
+                        }
+                      },
+                      "Property": "ProfitMargin"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(vendor_sales_summary.ProfitMargin)",
+              "nativeQueryRef": "Avg Profit Margin %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vendor_sales_summary"
+                        }
+                      },
+                      "Property": "StockTurnover"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(vendor_sales_summary.StockTurnover)",
+              "nativeQueryRef": "Avg Stock Turnover"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#094780'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "880a88a3754def5e6453",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vendor_sales_summary"
+              }
+            },
+            "Property": "VendorName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a0bb7879a223ed85c1df",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vendor_sales_summary"
+                  }
+                },
+                "Property": "TotalPurchaseDollars"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4e9e8dfc7c88ebcb99e1",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vendor_sales_summary"
+                  }
+                },
+                "Property": "TotalSalesDollars"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "573bdac496d8bafe1fe3",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vendor_sales_summary"
+                  }
+                },
+                "Property": "GrossProfit"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0963b37362f81f0a7f5b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vendor_sales_summary"
+                  }
+                },
+                "Property": "ProfitMargin"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "89b8d2d86af5aed55fcd",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vendor_sales_summary"
+                  }
+                },
+                "Property": "StockTurnover"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

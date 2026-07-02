@@ -1,0 +1,35 @@
+table PurchaseContribution
+	lineageTag: 1d449f22-aacf-4a37-9257-36cdbf3175ff
+
+	column VendorName
+		lineageTag: b197a692-c909-448c-b377-3c5d42935e58
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: vendor_sales_summary[VendorName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPurchaseDollars
+		lineageTag: e1358e8e-5bee-417b-b926-a6e8162be977
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [TotalPurchaseDollars]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PurchaseContribution% = PurchaseContribution[TotalPurchaseDollars]/sum(PurchaseContribution[TotalPurchaseDollars])*100
+		lineageTag: 7066a410-cb78-4d79-9cee-cc6737fd1ef8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition PurchaseContribution = calculated
+		mode: import
+		source = SUMMARIZE(vendor_sales_summary, vendor_sales_summary[VendorName],"TotalPurchaseDollars",SUM(vendor_sales_summary[TotalPurchaseDollars]))
+
+	annotation PBI_Id = 5593f54c3dc94bdf8f4ab94e2d36d860
+
